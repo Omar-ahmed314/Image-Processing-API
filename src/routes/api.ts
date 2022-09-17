@@ -1,5 +1,6 @@
 import express from 'express';
 import { imageQueryValidator } from './apiMiddleWares';
+import { ImageBuilder, ImageResizer, ImageFinder } from '../controllars/imageControllar';
 import path from 'path';
 
 // routers
@@ -15,8 +16,12 @@ imageRouter.get('/', (req: express.Request, res: express.Response) => {
 imageRouter.get(
   '/image',
   imageQueryValidator.validator(),
-  (req: express.Request, res: express.Response) => {
-    res.send('<h2> image holder </h2>');
+  async (req: express.Request, res: express.Response) => {
+    const {fileName, width, height} = req.query;
+    const readPath = path.join(mainPath, 'images', 'originalImages', `${fileName}.jpg`);
+    const writePath = path.join(mainPath, 'images', 'cachedImages', `${fileName}_${width}_${height}.jpg`);
+    await ImageBuilder.build(readPath, writePath, width as string, height as string);
+    res.sendFile(writePath);
   }
 );
 
