@@ -20,11 +20,11 @@ class imageQueryValidator {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             // check if the any params is empty
             if (!this.isDefinedParams(req.query))
-                throw new Error('undefined parameters');
+                next('undefined parameters');
             if (!this.isDimensionsValid(req.query))
-                throw new Error('Invalid Dimensions');
+                next('Invalid Dimensions');
             if (!(yield this.isImageExist(req.query)))
-                throw new Error('Image is not exist');
+                next('Image is not exist');
             next();
         });
     }

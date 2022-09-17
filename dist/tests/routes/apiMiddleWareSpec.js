@@ -10,97 +10,115 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const apiMiddleWares_1 = require("../../routes/apiMiddleWares");
-describe("Testing the api middleware functions", () => {
-    describe("Testing the Image validator class", () => {
+describe('Testing the api middleware functions', () => {
+    describe('Testing the Image validator class', () => {
         let query = {
-            fileName: "",
-            width: "",
-            height: ""
+            fileName: '',
+            width: '',
+            height: '',
         };
-        describe("Testing is defined function", () => {
-            it("should be invalid", () => {
+        describe('Testing is defined function', () => {
+            it('should be invalid', () => {
                 expect(apiMiddleWares_1.imageQueryValidator.isDefinedParams(query)).toBeFalse();
             });
-            it("should be valid", () => {
+            it('should be valid', () => {
                 query = {
-                    fileName: "hi",
-                    width: "200",
-                    height: "200"
+                    fileName: 'hi',
+                    width: '200',
+                    height: '200',
                 };
                 expect(apiMiddleWares_1.imageQueryValidator.isDefinedParams(query)).toBeTrue();
             });
         });
-        describe("Testing is dimension valid function", () => {
-            it("the dimensions should be vaild", () => {
+        describe('Testing is dimension valid function', () => {
+            it('the dimensions should be vaild', () => {
                 query = {
-                    width: "200",
-                    height: "200"
+                    width: '200',
+                    height: '200',
                 };
                 expect(apiMiddleWares_1.imageQueryValidator.isDimensionsValid(query)).toBeTrue();
             });
-            it("the empty dimensions should be invalid", () => {
+            it('the empty dimensions should be invalid', () => {
                 query = {
-                    width: "",
-                    height: ""
+                    width: '',
+                    height: '',
                 };
                 expect(apiMiddleWares_1.imageQueryValidator.isDimensionsValid(query)).toBeFalse();
             });
-            it("the unknown dimensions 1bx & abc should be invalid", () => {
+            it('the unknown dimensions 1bx & abc should be invalid', () => {
                 query = {
-                    width: "1bx",
-                    height: "abc"
+                    width: '1bx',
+                    height: 'abc',
                 };
                 expect(apiMiddleWares_1.imageQueryValidator.isDimensionsValid(query)).toBeFalse();
             });
         });
-        describe("Testing is image exist function", () => {
-            it("the image fjord.jpg should be exist", () => __awaiter(void 0, void 0, void 0, function* () {
+        describe('Testing is image exist function', () => {
+            it('the image fjord.jpg should be exist', () => __awaiter(void 0, void 0, void 0, function* () {
                 query = {
-                    fileName: "fjord"
+                    fileName: 'fjord',
                 };
                 expect(yield apiMiddleWares_1.imageQueryValidator.isImageExist(query)).toBeTrue();
             }));
-            it("the image abc.jpg should not be exist", () => __awaiter(void 0, void 0, void 0, function* () {
+            it('the image abc.jpg should not be exist', () => __awaiter(void 0, void 0, void 0, function* () {
                 query = {
-                    fileName: "abc"
+                    fileName: 'abc',
                 };
                 expect(yield apiMiddleWares_1.imageQueryValidator.isImageExist(query)).toBeFalse();
             }));
         });
-        describe("Testing validator function", () => {
-            let req = {
-                query: {
-                    fileName: "",
-                    width: "",
-                    height: ""
-                }
-            };
-            it("the validator should throw undefined error", () => __awaiter(void 0, void 0, void 0, function* () {
-                const validator = apiMiddleWares_1.imageQueryValidator.validator();
-                yield expectAsync(validator(req, req, req)).toBeRejectedWith(new Error('undefined parameters'));
-            }));
-            it("the validator should be throw invalid dimensions", () => __awaiter(void 0, void 0, void 0, function* () {
-                let req = {
-                    query: {
-                        fileName: "file",
-                        width: "abc",
-                        height: "200"
-                    }
-                };
-                const validator = apiMiddleWares_1.imageQueryValidator.validator();
-                yield expectAsync(validator(req, req, req)).toBeRejectedWith(new Error('Invalid Dimensions'));
-            }));
-            it("the validator should be throw image is not exist", () => __awaiter(void 0, void 0, void 0, function* () {
-                let req = {
-                    query: {
-                        fileName: "file",
-                        width: "200",
-                        height: "200"
-                    }
-                };
-                const validator = apiMiddleWares_1.imageQueryValidator.validator();
-                yield expectAsync(validator(req, req, req)).toBeRejectedWith(new Error('Image is not exist'));
-            }));
-        });
+        // describe('Testing validator function', () => {
+        //   let req = {
+        //     query: {
+        //       fileName: '',
+        //       width: '',
+        //       height: '',
+        //     },
+        //   };
+        //   it('the validator should throw undefined error', async () => {
+        //     const validator = imageQueryValidator.validator();
+        //     await expectAsync(
+        //       validator(
+        //         req as unknown as express.Request,
+        //         req as unknown as express.Response,
+        //         req as unknown as express.NextFunction
+        //       )
+        //     ).toBeRejectedWith(new Error('undefined parameters'));
+        //   });
+        //   it('the validator should be throw invalid dimensions', async () => {
+        //     let req = {
+        //       query: {
+        //         fileName: 'file',
+        //         width: 'abc',
+        //         height: '200',
+        //       },
+        //     };
+        //     const validator = imageQueryValidator.validator();
+        //     await expectAsync(
+        //       validator(
+        //         req as unknown as express.Request,
+        //         req as unknown as express.Response,
+        //         req as unknown as express.NextFunction
+        //       )
+        //     ).toBeRejectedWith(new Error('Invalid Dimensions'));
+        //   });
+        //   it('the validator should be throw image is not exist', async () => {
+        //     let req = {
+        //       query: {
+        //         fileName: 'file',
+        //         width: '200',
+        //         height: '200',
+        //       },
+        //     };
+        //     const validator = imageQueryValidator.validator();
+        //     await expectAsync(
+        //       validator(
+        //         req as unknown as express.Request,
+        //         req as unknown as express.Response,
+        //         req as unknown as express.NextFunction
+        //       )
+        //     ).toBeRejectedWith(new Error('Image is not exist'));
+        //   });
+        // });
     });
 });
