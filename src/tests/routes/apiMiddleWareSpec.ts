@@ -1,4 +1,3 @@
-import express from 'express';
 import { imageQueryValidator } from '../../routes/apiMiddleWares';
 import { ParsedQs } from 'qs';
 
@@ -48,17 +47,17 @@ describe('Testing the api middleware functions', () => {
     });
 
     describe('Testing is image exist function', () => {
-      it('the image fjord.jpg should be exist', async () => {
+      it('the image fjord.jpg should be exist', () => {
         query = {
           fileName: 'fjord',
         };
-        expect(await imageQueryValidator.isImageExist(query)).toBeTrue();
+        expect(imageQueryValidator.isImageExist(query)).toBeTrue();
       });
-      it('the image abc.jpg should not be exist', async () => {
+      it('the image abc.jpg should not be exist', () => {
         query = {
           fileName: 'abc',
         };
-        expect(await imageQueryValidator.isImageExist(query)).toBeFalse();
+        expect(imageQueryValidator.isImageExist(query)).toBeFalse();
       });
     });
 

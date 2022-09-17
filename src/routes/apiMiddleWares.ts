@@ -1,5 +1,5 @@
 import express from 'express';
-import { promises as fs } from 'fs';
+import { existsSync } from 'fs';
 import path from 'path';
 import { ParsedQs } from 'qs';
 
@@ -11,14 +11,11 @@ class imageQueryValidator {
       next: express.NextFunction
     ): Promise<void> => {
       // check if the any params is empty
-      if (!this.isDefinedParams(req.query))
-        next('undefined parameters');
+      if (!this.isDefinedParams(req.query)) next('undefined parameters');
 
-      if (!this.isDimensionsValid(req.query))
-        next('Invalid Dimensions');
+      if (!this.isDimensionsValid(req.query)) next('Invalid Dimensions');
 
-      if (!(await this.isImageExist(req.query)))
-        next('Image is not exist');
+      if (!(await this.isImageExist(req.query))) next('Image is not exist');
 
       next();
     };
@@ -37,21 +34,16 @@ class imageQueryValidator {
     return true;
   }
 
-  static async isImageExist(query: ParsedQs): Promise<boolean> {
-    try {
-      const { fileName } = query;
-      const imagePath = path.join(
-        __dirname,
-        '../../',
-        'images',
-        'originalImages',
-        (fileName as string) + '.jpg'
-      );
-      const image = await fs.readFile(imagePath);
-    } catch (err) {
-      return false;
-    }
-    return true;
+  static isImageExist(query: ParsedQs): boolean {
+    const { fileName } = query;
+    const imagePath = path.join(
+      __dirname,
+      '../../',
+      'images',
+      'originalImages',
+      (fileName as string) + '.jpg'
+    );
+    return existsSync(imagePath);
   }
 }
 

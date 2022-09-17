@@ -41,17 +41,9 @@ class imageQueryValidator {
         return true;
     }
     static isImageExist(query) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { fileName } = query;
-                const imagePath = path_1.default.join(__dirname, '../../', 'images', 'originalImages', fileName + '.jpg');
-                const image = yield fs_1.promises.readFile(imagePath);
-            }
-            catch (err) {
-                return false;
-            }
-            return true;
-        });
+        const { fileName } = query;
+        const imagePath = path_1.default.join(__dirname, '../../', 'images', 'originalImages', fileName + '.jpg');
+        return (0, fs_1.existsSync)(imagePath);
     }
 }
 exports.imageQueryValidator = imageQueryValidator;
