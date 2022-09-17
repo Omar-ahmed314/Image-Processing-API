@@ -7,7 +7,7 @@ import path from 'path';
 const imageRouter = express.Router();
 
 // const
-const mainPath = '../../';
+const mainPath = `${__dirname}/../../`;
 
 imageRouter.get('/', (req: express.Request, res: express.Response) => {
   res.send('<h2> api router </h2>');

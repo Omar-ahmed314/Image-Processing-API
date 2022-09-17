@@ -1,4 +1,5 @@
 import sharp from 'sharp';
+import path from 'path';
 import {existsSync} from 'fs';
 
 class ImageFinder {
@@ -16,10 +17,12 @@ class ImageResizer {
 }
 
 class ImageBuilder {
-    static build = async (readPath: string, writePath: string, width: string, height: string): Promise<string> => {
-        if(!ImageFinder.find(readPath))
-        await ImageResizer.resize(readPath, writePath, width, height);
-        return writePath;
+    static build = async (readPath: string, writePath: string, width: string, height: string): Promise<boolean> => {
+        if(!ImageFinder.find(writePath)) {
+            await ImageResizer.resize(readPath, writePath, width, height);
+            return true;
+        }
+        return false;
     }
 }
 
