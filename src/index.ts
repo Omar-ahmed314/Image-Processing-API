@@ -6,10 +6,15 @@
  */
 
 import express from 'express';
+import imageRouter from './routes/api';
 
 const app = express();
 const PORT: number = (process.env.PORT || 3000) as number;
 
+// middleware usage
+app.use('/api', imageRouter);
+
+// home endpoint
 app.get('/', (req: express.Request, res: express.Response): void => {
   res.send('<h1>Welcome to Image Processing API</h1>');
 });

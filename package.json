@@ -7,7 +7,7 @@
     "prettier": "prettier --write .prettierrc src/**/*.ts",
     "lint": "eslint src/**/*.ts",
     "style": "npm run prettier & npm run lint",
-    "dev": "nodemon src/main.ts",
+    "dev": "nodemon src/index.ts",
     "test": "jasmine",
     "prod": "npm run build & node dist/.",
     "build": "npx tsc"
