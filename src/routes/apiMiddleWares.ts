@@ -16,6 +16,8 @@ class imageQueryValidator {
 
             if(! await this.isImageExist(req.query))
             throw new Error('Image is not exist');
+
+            next();
         }
     }
 
@@ -36,7 +38,7 @@ class imageQueryValidator {
     static async isImageExist (query: ParsedQs): Promise<boolean> {
         try {
             const {fileName} = query;
-            const imagePath = path.join(__dirname, '../../', 'images', 'originalImages', fileName as string, '.jpg');
+            const imagePath = path.join(__dirname, '../../', 'images', 'originalImages', fileName as string + '.jpg');
             const image = await fs.readFile(imagePath);
         } catch (err) {
             return false;

@@ -8,7 +8,7 @@
     "lint": "eslint src/**/*.ts",
     "style": "npm run prettier & npm run lint",
     "dev": "nodemon src/index.ts",
-    "test": "jasmine",
+    "test": "npm run build & jasmine",
     "prod": "npm run build & node dist/.",
     "build": "npx tsc"
   },
