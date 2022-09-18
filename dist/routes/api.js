@@ -21,7 +21,7 @@ const imageRouter = express_1.default.Router();
 // const
 const mainPath = `${__dirname}/../../`;
 imageRouter.get('/', (req, res) => {
-    res.status(200).send('<h2> api router </h2>');
+    res.status(200).send('<h2>API Router</h2>');
 });
 imageRouter.get('/image', apiMiddleWares_1.imageQueryValidator.validator(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { fileName, width, height } = req.query;

@@ -42,7 +42,7 @@ class imageQueryValidator {
     }
     static isImageExist(query) {
         const { fileName } = query;
-        const imagePath = path_1.default.join(__dirname, '../../', 'images', 'originalImages', fileName + '.jpg');
+        const imagePath = path_1.default.join(__dirname, '../../', 'images', 'originalImages', `${fileName}.jpg`);
         return (0, fs_1.existsSync)(imagePath);
     }
 }

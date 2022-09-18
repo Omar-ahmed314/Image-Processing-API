@@ -41,7 +41,7 @@ class imageQueryValidator {
       '../../',
       'images',
       'originalImages',
-      (fileName as string) + '.jpg'
+      `${fileName}.jpg`
     );
     return existsSync(imagePath);
   }

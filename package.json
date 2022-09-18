@@ -9,7 +9,8 @@
     "style": "npm run prettier & npm run lint",
     "dev": "nodemon src/index.ts",
     "test": "npm run build & jasmine",
-    "prod": "npm run build & node dist/.",
+    "prod": "npm run build",
+    "start:server": "node dist/.",
     "build": "npx tsc"
   },
   "keywords": [],

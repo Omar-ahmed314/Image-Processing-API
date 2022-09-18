@@ -1,5 +1,6 @@
 /**
- * This project is an image processing api used to resize a given image with a specific ratio
+ * This project is an image processing api
+ * used to resize a given image with a specific ratio
  * @author: Omar Ahmed
  * @version: 1.0
  * @Date : 2022/09/17
@@ -11,12 +12,12 @@ import imageRouter from './routes/api';
 const app = express();
 const PORT: number = (process.env.PORT || 3000) as number;
 
-// middleware usage
+// image router middleware
 app.use('/api', imageRouter);
 
 // home endpoint
 app.get('/', (req: express.Request, res: express.Response): void => {
-  res.send('<h1>Welcome to Image Processing API</h1>');
+  res.status(200).send('<h1>Welcome to Image Processing API</h1>');
 });
 
 app.listen(PORT, (): void => {

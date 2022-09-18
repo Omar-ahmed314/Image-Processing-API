@@ -9,7 +9,7 @@ import { promises as fs } from 'fs';
 describe('Testing Image Controller Module', () => {
   const mainPath = '../../..';
   describe('Testing ImageFinder class', () => {
-    it('Image fjord should be found', () => {
+    it('Image (fjord.jpg) should be found', () => {
       const readPath = path.join(
         __dirname,
         mainPath,
@@ -19,7 +19,7 @@ describe('Testing Image Controller Module', () => {
       );
       expect(ImageFinder.find(readPath)).toBeTrue();
     });
-    it('Image abc should not be found', () => {
+    it('Image (abc.jpg) should not be found', () => {
       const readPath = path.join(
         __dirname,
         mainPath,
@@ -45,7 +45,7 @@ describe('Testing Image Controller Module', () => {
       'cachedImages',
       'fjord_200_200.jpg'
     );
-    it('Image fjord_200_200 should be resized', async () => {
+    it('Image (fjord_200_200.jpg) should be resized', async () => {
       await ImageResizer.resize(readPath, writePath, '200', '200');
       expect(ImageFinder.find(writePath)).toBeTrue();
     });
@@ -68,12 +68,12 @@ describe('Testing Image Controller Module', () => {
       'cachedImages',
       'fjord_200_200.jpg'
     );
-    it('Image fjord_200_200 should be resized and created', async () => {
+    it('Image (fjord_200_200.jpg) should be resized and created', async () => {
       expect(
         await ImageBuilder.build(readPath, writePath, '200', '200')
       ).toBeTrue();
     });
-    it('Image fjord_200_200 should not be created again', async () => {
+    it('Image (fjord_200_200.jpg) should not be created again', async () => {
       expect(
         await ImageBuilder.build(readPath, writePath, '200', '200')
       ).toBeFalse();

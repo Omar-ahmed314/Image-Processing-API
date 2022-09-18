@@ -18,11 +18,11 @@ const fs_1 = require("fs");
 describe('Testing Image Controller Module', () => {
     const mainPath = '../../..';
     describe('Testing ImageFinder class', () => {
-        it('Image fjord should be found', () => {
+        it('Image (fjord.jpg) should be found', () => {
             const readPath = path_1.default.join(__dirname, mainPath, 'images', 'originalImages', 'fjord.jpg');
             expect(imageControllar_1.ImageFinder.find(readPath)).toBeTrue();
         });
-        it('Image abc should not be found', () => {
+        it('Image (abc.jpg) should not be found', () => {
             const readPath = path_1.default.join(__dirname, mainPath, 'images', 'originalImages', 'abc.jpg');
             expect(imageControllar_1.ImageFinder.find(readPath)).toBeFalse();
         });
@@ -30,7 +30,7 @@ describe('Testing Image Controller Module', () => {
     describe('Testing ImageResizer class', () => {
         const readPath = path_1.default.join(__dirname, mainPath, 'images', 'originalImages', 'fjord.jpg');
         const writePath = path_1.default.join(__dirname, mainPath, 'images', 'cachedImages', 'fjord_200_200.jpg');
-        it('Image fjord_200_200 should be resized', () => __awaiter(void 0, void 0, void 0, function* () {
+        it('Image (fjord_200_200.jpg) should be resized', () => __awaiter(void 0, void 0, void 0, function* () {
             yield imageControllar_1.ImageResizer.resize(readPath, writePath, '200', '200');
             expect(imageControllar_1.ImageFinder.find(writePath)).toBeTrue();
         }));
@@ -41,10 +41,10 @@ describe('Testing Image Controller Module', () => {
     describe('Testing ImageBuilder class', () => {
         const readPath = path_1.default.join(__dirname, mainPath, 'images', 'originalImages', 'fjord.jpg');
         const writePath = path_1.default.join(__dirname, mainPath, 'images', 'cachedImages', 'fjord_200_200.jpg');
-        it('Image fjord_200_200 should be resized and created', () => __awaiter(void 0, void 0, void 0, function* () {
+        it('Image (fjord_200_200.jpg) should be resized and created', () => __awaiter(void 0, void 0, void 0, function* () {
             expect(yield imageControllar_1.ImageBuilder.build(readPath, writePath, '200', '200')).toBeTrue();
         }));
-        it('Image fjord_200_200 should not be created again', () => __awaiter(void 0, void 0, void 0, function* () {
+        it('Image (fjord_200_200.jpg) should not be created again', () => __awaiter(void 0, void 0, void 0, function* () {
             expect(yield imageControllar_1.ImageBuilder.build(readPath, writePath, '200', '200')).toBeFalse();
         }));
         afterAll(() => __awaiter(void 0, void 0, void 0, function* () {

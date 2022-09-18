@@ -8,7 +8,7 @@ describe('Testing the api middleware functions', () => {
             width: '',
             height: '',
         };
-        describe('Testing is defined function', () => {
+        describe('Testing (isDefined) function', () => {
             it('should be invalid', () => {
                 expect(apiMiddleWares_1.imageQueryValidator.isDefinedParams(query)).toBeFalse();
             });
@@ -21,7 +21,7 @@ describe('Testing the api middleware functions', () => {
                 expect(apiMiddleWares_1.imageQueryValidator.isDefinedParams(query)).toBeTrue();
             });
         });
-        describe('Testing is dimension valid function', () => {
+        describe('Testing (isDimensionValid) function', () => {
             it('the dimensions should be vaild', () => {
                 query = {
                     width: '200',
@@ -36,7 +36,7 @@ describe('Testing the api middleware functions', () => {
                 };
                 expect(apiMiddleWares_1.imageQueryValidator.isDimensionsValid(query)).toBeFalse();
             });
-            it('the unknown dimensions 1bx & abc should be invalid', () => {
+            it('the unknown dimensions (1bx & abc) should be invalid', () => {
                 query = {
                     width: '1bx',
                     height: 'abc',
@@ -45,13 +45,13 @@ describe('Testing the api middleware functions', () => {
             });
         });
         describe('Testing is image exist function', () => {
-            it('the image fjord.jpg should be exist', () => {
+            it('the image (fjord.jpg) should be exist', () => {
                 query = {
                     fileName: 'fjord',
                 };
                 expect(apiMiddleWares_1.imageQueryValidator.isImageExist(query)).toBeTrue();
             });
-            it('the image abc.jpg should not be exist', () => {
+            it('the image (abc.jpg) should not be exist', () => {
                 query = {
                     fileName: 'abc',
                 };
