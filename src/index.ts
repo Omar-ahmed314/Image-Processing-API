@@ -22,3 +22,5 @@ app.get('/', (req: express.Request, res: express.Response): void => {
 app.listen(PORT, (): void => {
   console.log(`listining to port ${PORT} successfully`);
 });
+
+export default app;

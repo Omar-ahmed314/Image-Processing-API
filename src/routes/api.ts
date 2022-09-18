@@ -10,7 +10,7 @@ const imageRouter = express.Router();
 const mainPath = `${__dirname}/../../`;
 
 imageRouter.get('/', (req: express.Request, res: express.Response) => {
-  res.send('<h2> api router </h2>');
+  res.status(200).send('<h2> api router </h2>');
 });
 
 imageRouter.get(
@@ -36,7 +36,7 @@ imageRouter.get(
       width as string,
       height as string
     );
-    res.sendFile(writePath);
+    res.status(200).sendFile(writePath);
   }
 );
 

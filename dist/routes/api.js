@@ -21,14 +21,14 @@ const imageRouter = express_1.default.Router();
 // const
 const mainPath = `${__dirname}/../../`;
 imageRouter.get('/', (req, res) => {
-    res.send('<h2> api router </h2>');
+    res.status(200).send('<h2> api router </h2>');
 });
 imageRouter.get('/image', apiMiddleWares_1.imageQueryValidator.validator(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { fileName, width, height } = req.query;
     const readPath = path_1.default.join(mainPath, 'images', 'originalImages', `${fileName}.jpg`);
     const writePath = path_1.default.join(mainPath, 'images', 'cachedImages', `${fileName}_${width}_${height}.jpg`);
     yield imageControllar_1.ImageBuilder.build(readPath, writePath, width, height);
-    res.sendFile(writePath);
+    res.status(200).sendFile(writePath);
 }));
 imageRouter.use((err, req, res, next) => {
     res.status(401).send(err);
